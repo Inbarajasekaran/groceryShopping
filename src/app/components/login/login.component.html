@@ -1,3 +1,29 @@
-<div class="col-12 row">
-    <h2>Login page</h2>
+<div class="col-12">
+    <div class="row justify-content-center p-0 m-0">
+        <div class="col-sm-12 col-md-6 col-lg-6 p-0 m-0 mat-elevation-z2" style="margin-top:21vh !important">
+            <form [formGroup]="loginForm">
+                <div class="col-12 m-0 p-0">
+                    <h2 class="d-flex justify-content-center">Login page</h2>
+                </div>
+                <div class="col-12 p-0 m-0">
+                    <div class="justify-content-center row m-0 p-3">
+                        <mat-form-field appearance="outline" class="col-6 m-1">
+                            <mat-label style="color: black;">UserName</mat-label>
+                            <input matInput formControlName="userName" type="text">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="col-6 m-1">
+                            <input matInput formControlName="password" type="password">
+                            <mat-label style="color: black;">Password</mat-label>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-12 row justify-content-center">
+                    <button class="col-2 mb-3" mat-raised-button [ngStyle]="loginForm.valid ? {'background-color' : 'green', 'color' : 'white' }
+                    : {'background-color' : 'rgb(219,219,219)', 'color' : 'white' }"
+                        style="background-color: green; color: white;" [disabled]="loginForm.invalid"
+                        (click)="login()">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
