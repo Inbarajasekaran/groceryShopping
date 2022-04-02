@@ -9,7 +9,8 @@ import { DbService } from 'src/app/services/db.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup
+  loginForm: FormGroup;
+  show: boolean = false;
   validUser: boolean = false;
   constructor(private fb: FormBuilder, private db: DbService, private router: Router) { }
 
@@ -18,6 +19,10 @@ export class LoginComponent implements OnInit {
       userName: ['', Validators.required],
       password: ['', Validators.required]
     })
+  }
+
+  showPwd(){
+    this.show = !this.show
   }
 
   login() {

@@ -1,1 +1,121 @@
-<p>register works!</p>
+<div class="col-12 row p-0 m-0">
+    <div class="d-flex justify-content-center p-0 m-0">
+        <div class="col-md-8 col-lg-8 col-sm-12 mat-elevation-z2" style="margin-top: 7vh;">
+            <div style="border-left:0.5px solid blue;">
+                <div class="col-12 p-0 m-0 mt-2">
+                    <h2 class="col-12 justify-content-center row">Register</h2>
+                </div>
+                <div class="col-12 p-0 m-0">
+                    <form [formGroup]="registerForm" class="p-4 col-12 row">
+                        <mat-form-field appearance="outline" class="col-6">
+                            <input matInput formControlName="firstName" type="text">
+                            <mat-label>First Name</mat-label>
+                            <mat-icon matSuffix>account_circle</mat-icon>
+                            <mat-error *ngIf="this.registerForm.controls['firstName'].invalid">
+                                Enter a proper name
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="col-6">
+                            <input matInput formControlName="lastName" type="text">
+                            <mat-label>Last Name</mat-label>
+                            <mat-icon matSuffix>account_circle</mat-icon>
+                            <mat-error *ngIf="this.registerForm.controls['lastName'].invalid">
+                                Enter a proper name
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="col-6">
+                            <input matInput formControlName="mailId" type="email">
+                            <mat-label>email Id</mat-label>
+                            <mat-icon matSuffix>email</mat-icon>
+                            <mat-error *ngIf="this.registerForm.controls['mailId'].errors?.pattern">
+                                Enter a proper mail address
+                            </mat-error>
+                            <mat-error *ngIf="this.registerForm.controls['mailId'].errors?.required">
+                                Enter a proper mail address
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-radio-group formControlName="gender" class="col-6">
+                            <span class="mt-3 d-flex">
+                                <mat-label>Gender<sup style="color: red;"
+                                        *ngIf="this.registerForm.controls['gender'].errors?.required">
+                                        *
+                                    </sup>:
+                                </mat-label>
+                                <mat-radio-button value="M" style="margin-left: 12px;">Male</mat-radio-button>
+                                <mat-radio-button value="F" style="margin-left: 12px;">Female</mat-radio-button>
+                                <mat-radio-button value="O" style="margin-left: 12px;">Other</mat-radio-button>
+                            </span>
+                        </mat-radio-group>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Address</mat-label>
+                            <textarea matInput formControlName="address"
+                                placeholder="Door No, Street Name, Area name, City, State, Country"></textarea>
+                            <mat-icon matSuffix>home</mat-icon>
+                            <mat-error *ngIf="this.registerForm.controls['address'].errors?.required">
+                                Enter a address in required format
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="col-6">
+                            <mat-label>Date of Birth</mat-label>
+                            <input matInput [matDatepicker]="picker" [max]="maxDate" formControlName="dob">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="col-6">
+                            <mat-label>Username</mat-label>
+                            <mat-icon matSuffix>account_circle</mat-icon>
+                            <input matInput formControlName="userName" type="text">
+                            <mat-error *ngIf="this.registerForm.controls['userName'].errors?.required">
+                                Enter a user name
+                            </mat-error>
+                            <mat-error *ngIf="this.registerForm.controls['userName'].errors?.minlength">
+                                Username must be more than 2 letters
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="col-6">
+                            <mat-label>Password</mat-label>
+                            <input matInput formControlName="password" [type]="show ? 'text' : 'password'"
+                                (input)="checkPassword(this.registerForm.controls['password'], this.registerForm.controls['verifyPassword'])">
+                            <button matSuffix mat-icon-button (click)="showPwd()">
+                                <mat-icon *ngIf="!show">visibility_off</mat-icon>
+                                <mat-icon *ngIf="show">visibility</mat-icon>
+                            </button>
+                            <mat-error *ngIf="this.registerForm.controls['password'].errors?.required">
+                                Enter a password
+                            </mat-error>
+                            <mat-error *ngIf="this.registerForm.controls['password'].errors?.minlength">
+                                Password must contain minimum 6 letters
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="col-6">
+                            <mat-label>Retype password</mat-label>
+                            <input matInput formControlName="verifyPassword" [type]="show ? 'text' : 'password'"
+                                (input)="checkPassword(this.registerForm.controls['password'], this.registerForm.controls['verifyPassword'])">
+                            <mat-error *ngIf="this.registerForm.controls['verifyPassword'].errors?.required">
+                                Enter the password to verify
+                            </mat-error>
+                            <mat-error style="color: red;"
+                                *ngIf="!verified && this.registerForm.controls['verifyPassword'].value.length > 0">
+                                Invalid password
+                            </mat-error>
+                            <mat-icon matSuffix *ngIf="!show">visibility_off</mat-icon>
+                            <mat-icon matSuffix *ngIf="show">visibility</mat-icon>
+                        </mat-form-field>
+                    </form>
+                    <div class="col-12 p-3 m-0 d-flex justify-content-around">
+                        <button mat-raised-button type="button" (click)="reset()" color="warn">Reset</button>
+                        <button mat-raised-button type="button" [disabled]="!verified || registerForm.invalid"
+                            [ngStyle]="registerForm.valid && verified ? {'background-color' : 'green', 'color' : 'white' }
+                    : {'background-color' : 'rgb(219,219,219)', 'color' : 'white' }"
+                            (click)="register()">Register</button>
+                    </div>
+                    <div class="col-12 p-0 m-0">
+                        <div class="p-4 d-flex justify-content-end">
+                            <a [routerLink]="['/']" class="row justify-content-end">Already have a acount</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

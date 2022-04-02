@@ -22,7 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatRadioModule } from '@angular/material/radio';
+import { MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -115,6 +115,11 @@ import { MatTreeModule } from '@angular/material/tree';
         MatSlideToggleModule,
         FormsModule,
         ReactiveFormsModule,
-    ]
+    ],
+    providers: [{
+        provide: MAT_RADIO_DEFAULT_OPTIONS,
+        useValue: { color: 'primary' }
+    }]
 })
+
 export class MaterialModule { }
