@@ -7,6 +7,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { MaterialModule } from './materialmodule/materials/materials.module';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { SellDirectlyProductsComponent } from './components/product-list/sell-directly-products/sell-directly-products.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +17,9 @@ import { MaterialModule } from './materialmodule/materials/materials.module';
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
+    ProductListComponent,
+    SellDirectlyProductsComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,
