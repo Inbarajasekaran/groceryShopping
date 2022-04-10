@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HelperService } from 'src/app/service/helper.service';
 import { DbService } from 'src/app/services/db.service';
+import { HelperService } from 'src/app/services/helper.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   showPwd() {
     this.show = !this.show
-  }
+  }O
 
   login() {
     this.db.userLogin.forEach(element => {

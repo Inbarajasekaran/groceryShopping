@@ -25,7 +25,7 @@ interface registeration {
 
 
 export class DbService {
-  
+
   constructor() { }
 
   /* Login and Registeration */
@@ -54,131 +54,120 @@ export class DbService {
 
   products: any[] = [
     {
-      'fruits': [{
-        name: "apple",
-        noOfProduct: 2000,
-        amount: 10,
-        totalNoOfStock: 2000,
-        stocksAvail: 2000,
-        stocksSold: 0,
-      },
-      {
-        name: "bannana",
-        noOfProduct: 2000,
-        amount: 10,
-        totalNoOfStock: 2000,
-        stocksAvail: 2000,
-        stocksSold: 0,
-      }]
+      name: "apple",
+      noOfProduct: 2000,
+      amount: 10,
+      weight: "1kg",
+      stocksAvail: 2000,
+      stocksSold: 0,
+    },
+    {
+      name: "bannana",
+      noOfProduct: 2000,
+      amount: 10,
+      weight: "2kg",
+      stocksAvail: 2000,
+      stocksSold: 0,
+    },
+    {
+      name: "orange",
+      noOfProduct: 2000,
+      amount: 10,
+      weight: 0,
+      stocksAvail: 2000,
+      stocksSold: 0,
     }
     , {
-      'vegetables': [{
-        name: "Avacado",
-        noOfProduct: 2000,
-        amount: 10,
-        totalNoOfStock: 2000,
-        stocksAvail: 2000,
-        stocksSold: 0,
-      },
-      {
-        name: "Beetroot",
-        noOfProduct: 2000,
-        amount: 10,
-        totalNoOfStock: 2000,
-        stocksAvail: 2000,
-        stocksSold: 0,
-      }]
+      name: "Carrot",
+      noOfProduct: 2000,
+      amount: 10,
+      weight: 0,
+      stocksAvail: 2000,
+      stocksSold: 0,
+    },
+    {
+      name: "Beetroot",
+      noOfProduct: 2000,
+      amount: 10,
+      weight: 0,
+      stocksAvail: 2000,
+      stocksSold: 0,
+    },
+    {
+      name: "Cake",
+      noOfProduct: 2000,
+      amount: 10,
+      weight: 0,
+      stocksAvail: 2000,
+      stocksSold: 0,
     }, {
-      'bakeryProducts': [
-        {
-          name: "Cake",
-          noOfProduct: 2000,
-          amount: 10,
-          totalNoOfStock: 2000,
-          stocksAvail: 2000,
-          stocksSold: 0,
-        }, {
-          name: "Bread",
-          noOfProduct: 2000,
-          amount: 10,
-          totalNoOfStock: 2000,
-          stocksAvail: 2000,
-          stocksSold: 0,
-        }
-      ]
+      name: "Bread",
+      noOfProduct: 2000,
+      amount: 10,
+      weight: 0,
+      stocksAvail: 2000,
+      stocksSold: 0,
+    },
+    {
+      name: "Beaf",
+      noOfProduct: 2000,
+      amount: 10,
+      weight: 0,
+      stocksAvail: 2000,
+      stocksSold: 0,
+    },
+    {
+      name: "Chicken",
+      noOfProduct: 2000,
+      amount: 10,
+      weight: 0,
+      stocksAvail: 2000,
+      stocksSold: 0,
     }, {
-      'meatAndEgg': [
-        {
-          name: "Beaf",
-          noOfProduct: 2000,
-          amount: 10,
-          totalNoOfStock: 2000,
-          stocksAvail: 2000,
-          stocksSold: 0,
-        },
-        {
-          name: "Chicken",
-          noOfProduct: 2000,
-          amount: 10,
-          totalNoOfStock: 2000,
-          stocksAvail: 2000,
-          stocksSold: 0,
-        }
-      ]
+      name: "Rice (Brown)",
+      noOfProduct: 2000,
+      amount: 10,
+      weight: 0,
+      stocksAvail: 2000,
+      stocksSold: 0,
     }, {
-      'riceAndPasta': [
-        {
-          name: "Rice (Brown)",
-          noOfProduct: 2000,
-          amount: 10,
-          totalNoOfStock: 2000,
-          stocksAvail: 2000,
-          stocksSold: 0,
-        }, {
-          name: "Rice (White)",
-          noOfProduct: 2000,
-          amount: 10,
-          totalNoOfStock: 2000,
-          stocksAvail: 2000,
-          stocksSold: 0,
-        }
-      ]
+      name: "Rice (White)",
+      noOfProduct: 2000,
+      amount: 10,
+      weight: 0,
+      stocksAvail: 2000,
+      stocksSold: 0,
     }, {
-      'oildAndSauce': [
-        {
-          name: "Palm Oil",
-          noOfProduct: 2000,
-          amount: 10,
-          totalNoOfStock: 2000,
-          stocksAvail: 2000,
-          stocksSold: 0,
-        }, {
-          name: "SUnflower Oil",
-          noOfProduct: 2000,
-          amount: 10,
-          totalNoOfStock: 2000,
-          stocksAvail: 2000,
-          stocksSold: 0,
-        }
-      ]
+      name: "Palm Oil",
+      noOfProduct: 2000,
+      amount: 10,
+      weight: 0,
+      stocksAvail: 2000,
+      stocksSold: 0,
     }, {
-      'condimentsCerealsPulse': [
-        {
-          name: "Grain",
-          noOfProduct: 2000,
-          amount: 10,
-          totalNoOfStock: 2000,
-          stocksAvail: 2000,
-          stocksSold: 0,
-        },
-        {
-          name: "Black Pepper",
-          noOfProduct: 2000,
-          amount: 10,
-          totalNoOfStock: 2000,
-          stocksAvail: 2000,
-          stocksSold: 0,
-        }]
+      name: "SUnflower Oil",
+      noOfProduct: 2000,
+      amount: 10,
+      weight: 0,
+      stocksAvail: 2000,
+      stocksSold: 0,
+    },
+
+    {
+      name: "Grain",
+      noOfProduct: 2000,
+      amount: 10,
+      weight: 0,
+      stocksAvail: 2000,
+      stocksSold: 0,
+    },
+    {
+      name: "Black Pepper",
+      noOfProduct: 2000,
+      amount: 10,
+      weight: 0,
+      stocksAvail: 2000,
+      stocksSold: 0,
     }
   ]
 

@@ -1,2 +1,46 @@
-<app-nav-bar></app-nav-bar>
-<!-- <router-outlet></router-outlet> -->
+<!-- <app-nav-bar></app-nav-bar> -->
+
+<div class="col-12 p-0 m-0" *ngIf="!loginPage && !registerationPage">
+    <mat-toolbar>
+        <div class="col-12 row">
+            <div class="col-8">
+                <button mat-icon-button (click)="opened = !opened">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <span style="vertical-align: middle;">Welcome {{userName}} </span>
+            </div>
+
+            <div class="col-4">
+                <div class="d-flex justify-content-end">
+                    <button class="col-3" mat-icon-button class="example-icon favorite-icon"
+                        matTooltip="Your Favorites">
+                        <mat-icon>favorite</mat-icon>
+
+                    </button>
+                    <button class="col-3" mat-icon-button class="example-icon favorite-icon" matTooltip="Dashboard">
+                        <mat-icon routerLink="/dashboard">dashboard</mat-icon>
+
+                    </button>
+                    <button class="col-3" mat-icon-button class="example-icon favorite-icon" matTooltip="Logout">
+                        <mat-icon (click)="logout()">logout</mat-icon>
+
+                    </button>
+                </div>
+            </div>
+        </div>
+    </mat-toolbar>
+</div>
+<mat-sidenav-container
+    [ngStyle]="{'height' : (router.url == '/' || router.url ==  '/login') ? '100vh' : 'calc(100vh - 64px)'} ">
+    <mat-sidenav mode="side" [(opened)]="opened" *ngIf="!loginPage && !registerationPage">
+        <div class="col-12 row m-0">
+            <a routerLink="/dashboard" class="py-2">Dashboard</a>
+
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content [ngStyle]="{'padding' : router.url == '/' || 'login' ? '0px' : '18px' }">
+        <div [ngClass]="{'col-12 pt-0 p-0 m-0' : router.url == '/' , 'col-12' : router.url != '/'}">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

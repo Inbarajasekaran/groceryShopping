@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MyCartComponent } from './my-cart.component';
+import { MyCartComponent } from './my-orders.component';
 
 describe('MyCartComponent', () => {
   let component: MyCartComponent;
