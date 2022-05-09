@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   show: boolean = false;
   validUser: boolean = false;
-  constructor(private fb: FormBuilder, private db: DbService, public router: Router, private helper: HelperService, private dlgRef :MatDialogRef<LoginComponent>) { }
+  constructor(private fb: FormBuilder, private db: DbService, public router: Router, private helper: HelperService, private dlgRef: MatDialogRef<LoginComponent>) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -35,9 +35,9 @@ export class LoginComponent implements OnInit {
     });
     if (this.validUser == true) {
       if (this.router.url == '/' || this.router.url == '/login') {
-        this.router.navigateByUrl('/dashboard');
-        localStorage.setItem('user', this.loginForm.value['userName;']);
+        localStorage.setItem('user', this.loginForm.value['userName']);
         this.helper.showName(this.loginForm.value['userName'])
+        this.router.navigateByUrl('/dashboard');
       } else {
         localStorage.setItem('user', this.loginForm.value['userName']);
         this.helper.showName(this.loginForm.value['userName']);
