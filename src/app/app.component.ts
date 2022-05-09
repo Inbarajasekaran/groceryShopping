@@ -9,7 +9,6 @@ import { HelperService } from './services/helper.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
   loginPage = false;
   registerationPage = false;
   userName: string = null;

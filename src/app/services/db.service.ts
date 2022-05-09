@@ -145,7 +145,7 @@ export class DbService {
       stocksAvail: 2000,
       stocksSold: 0,
     }, {
-      name: "SUnflower Oil",
+      name: "Sunflower Oil",
       noOfProduct: 2000,
       amount: 10,
       weight: 0,
@@ -169,6 +169,10 @@ export class DbService {
       stocksAvail: 2000,
       stocksSold: 0,
     }
+  ]
+
+  selectedProducts: any[] = [
+
   ]
 
 }

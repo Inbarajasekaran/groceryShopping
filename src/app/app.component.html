@@ -1,7 +1,7 @@
 <!-- <app-nav-bar></app-nav-bar> -->
 
 <div class="col-12 p-0 m-0" *ngIf="!loginPage && !registerationPage">
-    <mat-toolbar>
+    <mat-toolbar style="background-color: #3373e7; color: white;">
         <div class="col-12 row">
             <div class="col-8">
                 <button mat-icon-button (click)="opened = !opened">
@@ -31,15 +31,31 @@
     </mat-toolbar>
 </div>
 <mat-sidenav-container
-    [ngStyle]="{'height' : (router.url == '/' || router.url ==  '/login') ? '100vh' : 'calc(100vh - 64px)'} ">
-    <mat-sidenav mode="side" [(opened)]="opened" *ngIf="!loginPage && !registerationPage">
+    [ngStyle]="{'height' : (router.url == '/' || router.url ==  '/login' || router.url == '/register') ? '100vh' : 'calc(100vh - 64px)'} ">
+    <mat-sidenav mode="side" [(opened)]="opened" *ngIf="!loginPage && !registerationPage"
+        [ngClass]="{'col-2' : router.url != '/' && opened}">
         <div class="col-12 row m-0">
-            <a routerLink="/dashboard" class="py-2">Dashboard</a>
+            <mat-nav-list class="col-12 p-0 m-0">
+
+                <a routerLink="/dashboard" class="col-12 border-bottom" mat-list-item style="color: #3373e7;">
+                    <mat-icon class="col-2">home</mat-icon> <span class="col-10 mt-1 mx-1"> Dashboard </span>
+                </a>
+                <a routerLink="/products" class="col-12 border-bottom" mat-list-item style="color: #3373e7;">
+                    <mat-icon class="col-2">category</mat-icon> <span class="col-10 mt-1 mx-1"> Products </span>
+                </a>
+                <a routerLink="/my-orders" class="col-12 border-bottom" mat-list-item style="color: #3373e7;">
+                    <mat-icon class="col-2">shopping_cart</mat-icon> <span class="col-10 mt-1 mx-1"> My Cart </span>
+                </a>
+                <a routerLink="/partnership" class="col-12 border-bottom" mat-list-item style="color: #3373e7;">
+                    <mat-icon class="col-2">storefront</mat-icon> <span class="col-10 mt-1 mx-1"> Sell Directly </span>
+                </a>
+
+            </mat-nav-list>
 
         </div>
     </mat-sidenav>
     <mat-sidenav-content [ngStyle]="{'padding' : router.url == '/' || 'login' ? '0px' : '18px' }">
-        <div [ngClass]="{'col-12 pt-0 p-0 m-0' : router.url == '/' , 'col-12' : router.url != '/'}">
+        <div [ngClass]="{'col-12 pt-0 p-0 m-0' : router.url == '/' || opened , 'col-10' : router.url != '/' && opened}">
             <router-outlet></router-outlet>
         </div>
     </mat-sidenav-content>

@@ -103,7 +103,7 @@
     <!-- <div class="col-4 m-0 p-0 px-4 mt-3" *ngIf="addedData.data.length > 0"> -->
     <div [ngClass]="addedData.data.length > 0 ? 'col-4 m-0 p-0 px-4 mt-3' : 'visually-hidden' ">
         <h2>My Cart</h2>
-        <div class="col-12 p-0 m-0 mat-elevation-z2" style="max-height: 600px; overflow-y: scroll;">
+        <div class="col-12 p-0 m-0 mat-elevation-z2" style="max-height: 550px; overflow-y: scroll;">
             <table mat-table [dataSource]="addedData" style="text-align: center;" class="col-12">
                 <ng-container matColumnDef="SNo">
                     <th mat-header-cell *matHeaderCellDef style="text-align: center; font-size: 15px;"> S.No. </th>
@@ -140,6 +140,13 @@
                     style="background-color: #e7e7e7"></tr>
                 <tr mat-row *matRowDef="let row; columns: cartDisplayColumns;"></tr>
             </table>
+        </div>
+        <div class="col-12 row p-0 m-0 justify-content-center">
+            <div class="col-12 d-flex justify-content-around mt-3">
+                <button mat-raised-button *ngIf="addedData.data.length > 0" (click)="makeOrder()" style="background-color: #3373e7; color : white">Make Order
+                    <mat-icon>add_shopping_cart</mat-icon>
+                </button>
+            </div>
         </div>
     </div>
 </div>

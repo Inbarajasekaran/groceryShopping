@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DbService } from 'src/app/services/db.service';
 import { HelperService } from 'src/app/services/helper.service';
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   show: boolean = false;
   validUser: boolean = false;
-  constructor(private fb: FormBuilder, private db: DbService, private router: Router, private helper: HelperService) { }
+  constructor(private fb: FormBuilder, private db: DbService, public router: Router, private helper: HelperService, private dlgRef :MatDialogRef<LoginComponent>) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   showPwd() {
     this.show = !this.show
-  }O
+  }
 
   login() {
     this.db.userLogin.forEach(element => {
@@ -33,9 +34,15 @@ export class LoginComponent implements OnInit {
       }
     });
     if (this.validUser == true) {
-      this.router.navigateByUrl('/dashboard');
-      localStorage.setItem('user', this.loginForm.value['userName'])
-      this.helper.showName(this.loginForm.value['userName'])
+      if (this.router.url == '/' || this.router.url == '/login') {
+        this.router.navigateByUrl('/dashboard');
+        localStorage.setItem('user', this.loginForm.value['userName;']);
+        this.helper.showName(this.loginForm.value['userName'])
+      } else {
+        localStorage.setItem('user', this.loginForm.value['userName']);
+        this.helper.showName(this.loginForm.value['userName']);
+        this.dlgRef.close(true)
+      }
     } else {
       window.alert("Invalid Credentials.. : ~ {");
     }

@@ -1,15 +1,17 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { MaterialModule } from './materialmodule/materials/materials.module';
+import { MycartComponent } from './components/mycart/mycart.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
-import { SellDirectlyProductsComponent } from './components/product-list/sell-directly-products/sell-directly-products.component';
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { RegisterComponent } from './components/register/register.component';
+import { SellDirectlyProductsComponent } from './components/sell-directly-products/sell-directly-products.component';
+import { MaterialModule } from './materials/material.module';
+
 
 @NgModule({
   declarations: [
@@ -19,15 +21,15 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     DashboardComponent,
     ProductListComponent,
     SellDirectlyProductsComponent,
-    NavBarComponent,
+    MycartComponent,
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
+    MaterialModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    MaterialModule
+    MatSidenavModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [{ provide: MatDialogRef, useValue: {} }],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
