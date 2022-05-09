@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class SellDirectlyProductsComponent implements OnInit {
 
   constructor() { }
-test = [1,2,3,4]
+  
   ngOnInit(): void {
   }
 
