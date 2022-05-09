@@ -1,1 +1,43 @@
-<p>login works!</p>
+<div class="col-12">
+    <div class="row justify-content-center p-0 m-0">
+        <div class="row justify-content-around" [ngStyle]="{'margin-top' : (router.url == '/' || router.url == '/login') ? '21vh' : '0vh'}">
+            <div [ngClass]="{'col-sm-12 col-md-6 col-lg-6 p-0 m-0 mat-elevation-z2' : router.url == '/','col-12' : router.url != '/' }">
+                <form [formGroup]="loginForm" [ngClass]="{'mat-elevation-z2' : router.url != '/'}">
+                    <div style="border-left: 0.5px solid blue;">
+                        <div class="col-12 m-0 p-0" style="background-color: #3373e7; color: white">
+                            <h2 class="d-flex justify-content-center pt-3">Login</h2>
+                            <mat-divider></mat-divider>
+                        </div>
+                        <div class="col-12 pt-2 p-0 m-0">
+                            <div class="justify-content-center row m-0 p-3">
+                                <mat-form-field appearance="outline" class="col-sm-12 col-md-6 col-lg-6 m-1">
+                                    <mat-label style="color: black;">Username</mat-label>
+                                    <input matInput formControlName="userName" type="text">
+                                    <mat-icon matSuffix>account_circle</mat-icon>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="col-sm-12 col-md-6 col-lg-6 m-1">
+                                    <input matInput formControlName="password" [type]="show ? 'text' : 'password'">
+                                    <mat-label style="color: black;">Password</mat-label>
+                                    <span matSuffix mat-icon-button (click)="showPwd()" style="cursor: pointer;">
+                                        <mat-icon *ngIf="!show">visibility_off</mat-icon>
+                                        <mat-icon *ngIf="show">visibility</mat-icon>
+                                    </span>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-12 row p-0 m-0 justify-content-center">
+                            <button class="col-3 mb-3" mat-raised-button [ngStyle]="loginForm.valid ? {'background-color' : 'green', 'color' : 'white' }
+                        : {'background-color' : 'rgb(219,219,219)', 'color' : 'white' }"
+                                style="background-color: green; color: white;" [disabled]="loginForm.invalid"
+                                (click)="login()">Submit</button>
+                        </div>
+                        <div class="col-12 row">
+                            <a [routerLink]="['/register']" class="pt-3 pb-3 row justify-content-end">Not yet registered</a>
+                        </div>
+    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

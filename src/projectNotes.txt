@@ -1,0 +1,10 @@
+Login    }
+            }- - ->  [ {First Screen} ]
+Register page }
+
+Dashboard page --> [ {List all pages link in side nav and show as card elements} ]
+
+Product list page ---(ADMIN AND NON ADMIN)---> [ {To Order/Select items, My cart page (With order tracking and payment)} ]  ,
+---(ADMIN)---> ([{Add, Edit, Delete rights}]), My cart page (With order tracking and payment) 
+
+Direct Sell --> view required products page, sell products page[ {with payment} ]
