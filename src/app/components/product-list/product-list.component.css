@@ -3,3 +3,8 @@
     position: sticky;
     z-index: 10;
 }
+
+::ng-deep .my-form-field .mat-form-field-wrapper {
+    padding-bottom: 0px !important;
+    padding: 5px !important;
+}

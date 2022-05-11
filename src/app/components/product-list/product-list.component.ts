@@ -14,7 +14,7 @@ import { LoginComponent } from '../login/login.component';
 })
 export class ProductListComponent implements OnInit, AfterViewInit {
 
-  constructor(private db: DbService, private router: Router, private dlg : MatDialog) { }
+  constructor(private db: DbService, private router: Router, private dlg: MatDialog) { }
   products: any = [];
   dataSource = new MatTableDataSource([]);
   displayedColumns: string[] = ['selectAll', 'SNo', 'name', 'stocksAvail', 'weight', 'amount'];
@@ -22,7 +22,8 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   emptyCheck: boolean = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   addedData = new MatTableDataSource([]);
-  cartDisplayColumns: string[] = ['SNo', 'name', 'quantity', 'amount', 'remove']
+  cartDisplayColumns: string[] = ['SNo', 'name', 'quantity', 'amount', 'remove'];
+  noOfStocks: any = [];
 
   ngOnInit(): void {
     this.db.products.forEach((ele, i) => {
@@ -36,21 +37,21 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     this.addedData = new MatTableDataSource([]);
   }
 
-  /** Whether the number of selected elements matches the total number of rows. */
+  /* WHETHER THE NUMBER OF SELECTED ELEMENTS MATCHESTHE TOTAL NUMBER OF ROWS */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  /* SELECTS ALL THE ROWS IF THEY ARE NOT SELECTED; OTHERWISE CLEAR selection. */
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :
       this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
-  /** The label for the checkbox on the passed row */
+  /* THE LABEL FOR THE CHECKBOX ON THE PASSED ROW */
   // checkboxLabel(row?: any): string {
   //   if (!row) {
   //     return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
@@ -69,6 +70,14 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     }
   }
 
+  requiredAmt(ele) { // HERE THE ele WILL GET THE quantity FROM ngModel
+    ele['stocksAvail'] = ele['noOfProduct'] - ele['quantity'];
+  }
+
+  // requiredAmt(ele, val) { // ALTENATIVELEY USING noOfStocks AS ngModel
+  //   ele['stocksAvail'] = ele['noOfProduct'] - val;
+  // }
+
   removeFromCart(item) {
     let arr = this.addedData.data
     arr.forEach(function (ele, i) {
@@ -81,12 +90,12 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   }
 
   makeOrder() {
-    if (localStorage.getItem('user')){
+    if (localStorage.getItem('user')) {
       this.db.selectedProducts = this.addedData.data;
       this.router.navigateByUrl('my-orders');
     } else {
       this.dlg.open(LoginComponent).afterClosed().subscribe(res => {
-        if (res == true){
+        if (res == true) {
           this.db.selectedProducts = this.addedData.data;
           this.router.navigateByUrl('my-orders');
         }

@@ -54,6 +54,7 @@ export class DbService {
 
   products: any[] = [
     {
+      id: "Prod0",
       name: "apple",
       noOfProduct: 2000,
       amount: 10,
@@ -62,14 +63,16 @@ export class DbService {
       stocksSold: 0,
     },
     {
+      id: "Prod1",
       name: "bannana",
-      noOfProduct: 2000,
+      noOfProduct: 1000,
       amount: 10,
       weight: "2kg",
-      stocksAvail: 2000,
+      stocksAvail: 1000,
       stocksSold: 0,
     },
     {
+      id: "Prod2",
       name: "orange",
       noOfProduct: 2000,
       amount: 10,
@@ -78,6 +81,7 @@ export class DbService {
       stocksSold: 0,
     }
     , {
+      id: "Prod3",
       name: "Carrot",
       noOfProduct: 2000,
       amount: 10,
@@ -86,6 +90,7 @@ export class DbService {
       stocksSold: 0,
     },
     {
+      id: "Prod4",
       name: "Beetroot",
       noOfProduct: 2000,
       amount: 10,
@@ -94,6 +99,7 @@ export class DbService {
       stocksSold: 0,
     },
     {
+      id: "Prod5",
       name: "Cake",
       noOfProduct: 2000,
       amount: 10,
@@ -101,6 +107,7 @@ export class DbService {
       stocksAvail: 2000,
       stocksSold: 0,
     }, {
+      id: "Prod6",
       name: "Bread",
       noOfProduct: 2000,
       amount: 10,
@@ -109,6 +116,7 @@ export class DbService {
       stocksSold: 0,
     },
     {
+      id: "Prod7",
       name: "Beaf",
       noOfProduct: 2000,
       amount: 10,
@@ -117,6 +125,7 @@ export class DbService {
       stocksSold: 0,
     },
     {
+      id: "Prod8",
       name: "Chicken",
       noOfProduct: 2000,
       amount: 10,
@@ -124,6 +133,7 @@ export class DbService {
       stocksAvail: 2000,
       stocksSold: 0,
     }, {
+      id: "Prod9",
       name: "Rice (Brown)",
       noOfProduct: 2000,
       amount: 10,
@@ -131,6 +141,7 @@ export class DbService {
       stocksAvail: 2000,
       stocksSold: 0,
     }, {
+      id: "Prod10",
       name: "Rice (White)",
       noOfProduct: 2000,
       amount: 10,
@@ -138,6 +149,7 @@ export class DbService {
       stocksAvail: 2000,
       stocksSold: 0,
     }, {
+      id: "Prod11",
       name: "Palm Oil",
       noOfProduct: 2000,
       amount: 10,
@@ -145,6 +157,7 @@ export class DbService {
       stocksAvail: 2000,
       stocksSold: 0,
     }, {
+      id: "Prod12",
       name: "Sunflower Oil",
       noOfProduct: 2000,
       amount: 10,
@@ -154,6 +167,7 @@ export class DbService {
     },
 
     {
+      id: "Prod13",
       name: "Grain",
       noOfProduct: 2000,
       amount: 10,
@@ -162,6 +176,7 @@ export class DbService {
       stocksSold: 0,
     },
     {
+      id: "Prod14",
       name: "Black Pepper",
       noOfProduct: 2000,
       amount: 10,
@@ -171,8 +186,6 @@ export class DbService {
     }
   ]
 
-  selectedProducts: any[] = [
-
-  ]
+  selectedProducts: any[] = [];
 
 }
