@@ -56,6 +56,7 @@ export class DbService {
     {
       id: "Prod0",
       name: "apple",
+      type: "fruits",
       noOfProduct: 2000,
       amount: 10,
       weight: "1kg",
@@ -65,8 +66,9 @@ export class DbService {
     {
       id: "Prod1",
       name: "bannana",
+      type: "fruits",
       noOfProduct: 1000,
-      amount: 10,
+      amount: 20,
       weight: "2kg",
       stocksAvail: 1000,
       stocksSold: 0,
@@ -74,8 +76,9 @@ export class DbService {
     {
       id: "Prod2",
       name: "orange",
+      type: "fruits",
       noOfProduct: 2000,
-      amount: 10,
+      amount: 90,
       weight: 0,
       stocksAvail: 2000,
       stocksSold: 0,
@@ -83,8 +86,9 @@ export class DbService {
     , {
       id: "Prod3",
       name: "Carrot",
+      type: "vegetables",
       noOfProduct: 2000,
-      amount: 10,
+      amount: 40,
       weight: 0,
       stocksAvail: 2000,
       stocksSold: 0,
@@ -92,8 +96,9 @@ export class DbService {
     {
       id: "Prod4",
       name: "Beetroot",
+      type: "vegetables",
       noOfProduct: 2000,
-      amount: 10,
+      amount: 70,
       weight: 0,
       stocksAvail: 2000,
       stocksSold: 0,
@@ -101,16 +106,18 @@ export class DbService {
     {
       id: "Prod5",
       name: "Cake",
+      type: "bakery products",
       noOfProduct: 2000,
-      amount: 10,
+      amount: 8,
       weight: 0,
       stocksAvail: 2000,
       stocksSold: 0,
     }, {
       id: "Prod6",
       name: "Bread",
+      type: "bakery products",
       noOfProduct: 2000,
-      amount: 10,
+      amount: 25,
       weight: 0,
       stocksAvail: 2000,
       stocksSold: 0,
@@ -118,6 +125,7 @@ export class DbService {
     {
       id: "Prod7",
       name: "Beaf",
+      type: "meat",
       noOfProduct: 2000,
       amount: 10,
       weight: 0,
@@ -127,6 +135,7 @@ export class DbService {
     {
       id: "Prod8",
       name: "Chicken",
+      type: "meat",
       noOfProduct: 2000,
       amount: 10,
       weight: 0,
@@ -135,6 +144,7 @@ export class DbService {
     }, {
       id: "Prod9",
       name: "Rice (Brown)",
+      type: "cerals",
       noOfProduct: 2000,
       amount: 10,
       weight: 0,
@@ -143,6 +153,7 @@ export class DbService {
     }, {
       id: "Prod10",
       name: "Rice (White)",
+      type: "cerals",
       noOfProduct: 2000,
       amount: 10,
       weight: 0,
@@ -151,16 +162,18 @@ export class DbService {
     }, {
       id: "Prod11",
       name: "Palm Oil",
+      type: "oil",
       noOfProduct: 2000,
-      amount: 10,
+      amount: 100,
       weight: 0,
       stocksAvail: 2000,
       stocksSold: 0,
     }, {
       id: "Prod12",
       name: "Sunflower Oil",
+      type: "oil",
       noOfProduct: 2000,
-      amount: 10,
+      amount: 100,
       weight: 0,
       stocksAvail: 2000,
       stocksSold: 0,
@@ -169,6 +182,7 @@ export class DbService {
     {
       id: "Prod13",
       name: "Grain",
+      type: "cereals",
       noOfProduct: 2000,
       amount: 10,
       weight: 0,
@@ -178,6 +192,7 @@ export class DbService {
     {
       id: "Prod14",
       name: "Black Pepper",
+      type: "cereals",
       noOfProduct: 2000,
       amount: 10,
       weight: 0,

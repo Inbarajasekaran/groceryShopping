@@ -15,7 +15,12 @@ import { LoginComponent } from '../login/login.component';
 export class ProductListComponent implements OnInit, AfterViewInit {
 
   constructor(private db: DbService, private router: Router, private dlg: MatDialog) { }
+  selectedType: any;
+  type: any = [];
+  selectedPrice: any;
+  price: any = [];
   products: any = [];
+  filteredObj: any = {};
   dataSource = new MatTableDataSource([]);
   displayedColumns: string[] = ['selectAll', 'SNo', 'name', 'stocksAvail', 'weight', 'amount'];
   selection = new SelectionModel<any>(true, []);
@@ -28,7 +33,9 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.db.products.forEach((ele, i) => {
       this.products.push(ele)
-    })
+      this.type.push(ele['type']);
+      this.price.push(ele['amount']);
+    });
   }
 
   ngAfterViewInit(): void {
@@ -77,6 +84,47 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   // requiredAmt(ele, val) { // ALTENATIVELEY USING noOfStocks AS ngModel
   //   ele['stocksAvail'] = ele['noOfProduct'] - val;
   // }
+
+  filter(type, val) {
+    this.dataSource = new MatTableDataSource(this.products);
+    if (this.filteredObj[type]) {
+      this.filteredObj[type] = val
+    } else {
+      // this.filteredObj = { type: val }
+      this.filteredObj[type] = val
+    }
+    let dataSourceBackup = this.dataSource.data;
+    let temp = []
+    dataSourceBackup.forEach(ele => {
+      if (this.check(this.filteredObj, ele)) {
+        temp.push(ele);
+      }
+    })
+    this.dataSource = new MatTableDataSource(temp);
+  }
+
+  check(filteredVal, element) {
+    let sts = false;
+    for (const key in filteredVal) {
+      if (typeof filteredVal[key] != "string") {
+        if (filteredVal[key].indexOf(element[key]) > -1) {
+          sts = true;
+          // break;
+        } else {
+          sts = false;
+          // break;
+        }
+      } else {
+        if (filteredVal[key] == element[key]) {
+          sts = true;
+        } else {
+          sts = false;
+          // break;
+        }
+      }
+    }
+    return sts;
+  }
 
   removeFromCart(item) {
     let arr = this.addedData.data
