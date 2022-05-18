@@ -96,7 +96,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
       this.filteredObj[type] = val;
     }
     let dataSourceBackup = this.dataSource.data;
-    let temp = []
+    let temp = [];
     dataSourceBackup.forEach(ele => {
       if (this.check(this.filteredObj, ele)) {
         temp.push(ele);
