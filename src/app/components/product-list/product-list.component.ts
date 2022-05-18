@@ -86,12 +86,14 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   // }
 
   filter(type, val) {
+    this.price = [];
+    this.type = [];
     this.dataSource = new MatTableDataSource(this.products);
     if (this.filteredObj[type]) {
-      this.filteredObj[type] = val
+      this.filteredObj[type] = val;
     } else {
       // this.filteredObj = { type: val }
-      this.filteredObj[type] = val
+      this.filteredObj[type] = val;
     }
     let dataSourceBackup = this.dataSource.data;
     let temp = []
@@ -101,6 +103,10 @@ export class ProductListComponent implements OnInit, AfterViewInit {
       }
     })
     this.dataSource = new MatTableDataSource(temp);
+    this.dataSource.data.forEach(ele => {
+      this.price.push(ele['amount'])
+      this.type.push(ele['type'])
+    })
   }
 
   check(filteredVal, element) {
@@ -109,7 +115,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
       if (typeof filteredVal[key] != "string") {
         if (filteredVal[key].indexOf(element[key]) > -1) {
           sts = true;
-          // break;
+          break;
         } else {
           sts = false;
           // break;
