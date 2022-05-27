@@ -29,12 +29,17 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   addedData = new MatTableDataSource([]);
   cartDisplayColumns: string[] = ['SNo', 'name', 'quantity', 'amount', 'remove'];
   noOfStocks: any = [];
+  enableAddCart = false;
 
   ngOnInit(): void {
     this.db.products.forEach((ele, i) => {
       this.products.push(ele)
       this.type.push(ele['type']);
-      this.price.push(ele['amount']);
+      let typeArr = [... new Set(this.type)]
+      this.type = typeArr;
+      // this.price.push(ele['amount']);
+      // let priceArr = [... new Set(this.type)];
+      // this.price = priceArr;
     });
   }
 
@@ -67,6 +72,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   // }
 
   eventCheck() {
+    this.enableAddCart = false;
     if (this.selection.selected.length > 0) {
       this.emptyCheck = false;
       this.addedData = new MatTableDataSource(this.selection.selected)
@@ -79,6 +85,25 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
   requiredAmt(ele) { // HERE THE ele WILL GET THE quantity FROM ngModel
     ele['stocksAvail'] = ele['noOfProduct'] - ele['quantity'];
+
+    if(ele['quantity'] > ele['stocksAvail']) { // TO HANDLE NUMBER TO NEGETIVE VALUE
+      ele['stocksAvail'] = 0
+    }
+    // CODE FOR ENABLE Make Order BUTTON
+    let tmpVal = 0;
+    this.enableAddCart = false;
+    this.addedData.data.forEach(ele => {
+      if (ele['quantity'] != undefined && ele['quantity'] != "") {
+        ++tmpVal;
+      } else {
+        tmpVal = 0;
+      }
+    })
+    if (tmpVal <= 0) {
+      this.enableAddCart = false;
+    } else {
+      this.enableAddCart = true;
+    }
   }
 
   // requiredAmt(ele, val) { // ALTENATIVELEY USING noOfStocks AS ngModel
@@ -86,8 +111,8 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   // }
 
   filter(type, val) {
-    this.price = [];
-    this.type = [];
+    // this.price = [];
+    // this.type = [];
     this.dataSource = new MatTableDataSource(this.products);
     if (this.filteredObj[type]) {
       this.filteredObj[type] = val;
@@ -103,8 +128,9 @@ export class ProductListComponent implements OnInit, AfterViewInit {
       }
     })
     this.dataSource = new MatTableDataSource(temp);
+    this.dataSource.paginator = this.paginator;
     this.dataSource.data.forEach(ele => {
-      this.price.push(ele['amount'])
+      // this.price.push(ele['amount'])
       this.type.push(ele['type'])
     })
   }
@@ -144,16 +170,18 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   }
 
   makeOrder() {
-    if (localStorage.getItem('user')) {
-      this.db.selectedProducts = this.addedData.data;
-      this.router.navigateByUrl('my-orders');
-    } else {
-      this.dlg.open(LoginComponent).afterClosed().subscribe(res => {
-        if (res == true) {
-          this.db.selectedProducts = this.addedData.data;
-          this.router.navigateByUrl('my-orders');
-        }
-      })
+    if (this.enableAddCart == true) {
+      if (localStorage.getItem('user')) {
+        this.db.selectedProducts = this.addedData.data;
+        this.router.navigateByUrl('my-orders');
+      } else {
+        this.dlg.open(LoginComponent).afterClosed().subscribe(res => {
+          if (res == true) {
+            this.db.selectedProducts = this.addedData.data;
+            this.router.navigateByUrl('my-orders');
+          }
+        })
+      }
     }
   }
 
