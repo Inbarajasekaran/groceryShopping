@@ -1,40 +1,25 @@
-<!-- <div class="col-12 row">
-    <div class="col-12 p-4">
-        <div class="col-12" *ngFor="let loop of products; let i = index">
-            <mat-label  *ngFor="let getLoop of products[i] | keyvalue"> {{getLoop.key}} </mat-label>
-            <div class="col-12" *ngFor="let getName of loop['fruits']; let ind = index">
-                {{getName['name']}} 
-            </div>
-            <div class="col-12" *ngFor="let getName of loop['vegetables']; let ind = index">
-                {{getName['name']}}
-            </div>
-            <div class="col-12" *ngFor="let getName of loop['bakeryProducts']; let ind = index">
-                {{getName['name']}}
-            </div>
-            <div class="col-12" *ngFor="let getName of loop['meatAndEgg']; let ind = index">
-                {{getName['name']}}
-            </div>
-            <div class="col-12" *ngFor="let getName of loop['riceAndPasta']; let ind = index">
-                {{getName['name']}}
-            </div>
-            <div class="col-12" *ngFor="let getName of loop['oildAndSauce']; let ind = index">
-                {{getName['name']}}
-            </div>
-            <div class="col-12" *ngFor="let getName of loop['condimentsCerealsPulse']; let ind = index">
-                {{getName['name']}}
-            </div>
-        </div>
-    </div>
-</div> -->
 <div class="col-12 row p-0 m-0">
-    <!-- <div class="col-8 m-0 p-0 px-4 mt-3"> -->
+    <!-- PRODUCTS TABLE -->
     <div
         [ngClass]="addedData.data.length > 0 ? 'col-8 m-0 p-0 px-4 mt-3' : 'col-12 row justify-content-center m-0 p-0 px-4 mt-3' ">
         <h2>Products</h2>
-        <!-- <div class="col-10 row mat-elevation-z2 p-0 m-0" style="max-height: 600px; overflow-y: scroll;"> -->
+        <div
+            [ngClass]="addedData.data.length > 0 ? 'col-12 row justify-content-end mat-elevation-z2 pt-2 p-0 m-0' : 'col-10 row justify-content-end mat-elevation-z2 pt-2 p-0 m-0' ">
+            <mat-form-field appearance="outline" class="col-3">
+                <mat-select multiple [(ngModel)]="selectedType" (selectionChange)="filter('type', selectedType)">
+                    <mat-option *ngFor="let getType of type" [value]="getType">{{getType}}</mat-option>
+                </mat-select>
+                <mat-label>Filter By Type</mat-label>
+            </mat-form-field>
+            <!-- <mat-form-field appearance="outline" class="col-6">
+                <mat-select multiple [(ngModel)]="selectedPrice" (selectionChange)="filter('amount', selectedPrice)">
+                    <mat-option *ngFor="let getPrice of price" [value]="getPrice">{{getPrice}}</mat-option>
+                </mat-select>
+                <mat-label>Price</mat-label>
+            </mat-form-field> -->
+        </div>
         <div [ngClass]="addedData.data.length > 0 ? 'col-12 row mat-elevation-z2 p-0 m-0' : 'col-10 row mat-elevation-z2 p-0 m-0' "
             style="max-height: 600px; overflow-y: scroll;">
-            <!-- <div [ngClass]="addedData.data.length > 0 ? 'col-10 row mat-elevation-z2 p-0 m-0' : 'col-12 row mat-elevation-z2 p-0 m-0'" style="max-height: 600px; overflow-y: scroll;"> -->
             <table mat-table [dataSource]="dataSource" style="text-align: center;">
                 <ng-container matColumnDef="selectAll">
                     <!-- <th mat-header-cell *matHeaderCellDef style="text-align: center; font-size: 15px;">
@@ -62,30 +47,32 @@
                     </td>
                 </ng-container>
 
+                <!-- S.No Column -->
                 <ng-container matColumnDef="SNo">
                     <th mat-header-cell *matHeaderCellDef style="text-align: center; font-size: 15px;"> S.No. </th>
                     <td mat-cell *matCellDef="let element; let i = index">
                         {{ (paginator.pageIndex * paginator.pageSize) + (i + 1) }}</td>
                 </ng-container>
 
+                <!-- NAME Column -->
                 <ng-container matColumnDef="name">
                     <th mat-header-cell *matHeaderCellDef style="text-align: center; font-size: 15px;"> Name </th>
                     <td mat-cell *matCellDef="let element"> {{element.name}} </td>
                 </ng-container>
 
-                <!-- Name Column -->
+                <!-- NUMBER Column -->
                 <ng-container matColumnDef="stocksAvail">
                     <th mat-header-cell *matHeaderCellDef style="text-align: center; font-size: 15px;"> Number </th>
                     <td mat-cell *matCellDef="let element"> {{element.stocksAvail}} </td>
                 </ng-container>
 
-                <!-- Weight Column -->
+                <!-- WEIGHT Column -->
                 <ng-container matColumnDef="weight">
                     <th mat-header-cell *matHeaderCellDef style="text-align: center; font-size: 15px;"> Weight </th>
                     <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
                 </ng-container>
 
-                <!-- Symbol Column -->
+                <!-- AMOUNT Column -->
                 <ng-container matColumnDef="amount">
                     <th mat-header-cell *matHeaderCellDef style="text-align: center; font-size: 15px;"> Amount </th>
                     <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
@@ -100,33 +87,48 @@
             </mat-paginator>
         </div>
     </div>
-    <!-- <div class="col-4 m-0 p-0 px-4 mt-3" *ngIf="addedData.data.length > 0"> -->
+
+    <!-- CART TABLE -->
+
     <div [ngClass]="addedData.data.length > 0 ? 'col-4 m-0 p-0 px-4 mt-3' : 'visually-hidden' ">
         <h2>My Cart</h2>
         <div class="col-12 p-0 m-0 mat-elevation-z2" style="max-height: 550px; overflow-y: scroll;">
             <table mat-table [dataSource]="addedData" style="text-align: center;" class="col-12">
+                <!-- SNo Column -->
                 <ng-container matColumnDef="SNo">
                     <th mat-header-cell *matHeaderCellDef style="text-align: center; font-size: 15px;"> S.No. </th>
                     <td mat-cell *matCellDef="let item; let i = index">{{i + 1}}</td>
                 </ng-container>
 
+                <!-- NAME Column -->
                 <ng-container matColumnDef="name">
                     <th mat-header-cell *matHeaderCellDef style="text-align: center; font-size: 15px;"> Name </th>
                     <td mat-cell *matCellDef="let item"> {{item.name}} </td>
                 </ng-container>
 
-                <!-- Qty Column -->
+                <!-- QUANTITY Column -->
                 <ng-container matColumnDef="quantity">
                     <th mat-header-cell *matHeaderCellDef style="text-align: center; font-size: 15px;"> Quantity </th>
-                    <td mat-cell *matCellDef="let item"> {{item.stocksAvail}} </td>
+                    <td mat-cell *matCellDef="let item; let i = index">
+                        <mat-form-field appearance="outline" style="width: 85px;" class="my-form-field">
+                            <input matInput [(ngModel)]="item['quantity']" (input)="requiredAmt(item)" min="1"
+                                type="number" required name="qty" id="qty" #qty="ngModel"
+                                [ngStyle]="{'color' : item['quantity'] > item['noOfProduct'] ? 'red' : 'black' }">
+                            <!-- / ngModel WILL ADD THE NEW PROPERTY quantity / -->
+                            <!-- <input matInput [(ngModel)]="noOfStocks[i]" (input)="requiredAmt(item, noOfStocks[i])"> -->
+                            <!-- / ngModel noOfStocks[i] STORE THE VALUE / -->
+                        </mat-form-field>
+                        <div *ngIf="qty.touched && qty.invalid" style="color: red;">test</div>
+                    </td>
                 </ng-container>
 
-                <!-- Amt Column -->
+                <!-- AMOUNT Column -->
                 <ng-container matColumnDef="amount">
                     <th mat-header-cell *matHeaderCellDef style="text-align: center; font-size: 15px;"> Amount </th>
                     <td mat-cell *matCellDef="let item"> {{item.amount}} </td>
                 </ng-container>
 
+                <!-- REMOVE Column -->
                 <ng-container matColumnDef="remove">
                     <th mat-header-cell *matHeaderCellDef style="text-align: center; font-size: 15px;"> Remove </th>
                     <td mat-cell *matCellDef="let item">
@@ -143,7 +145,8 @@
         </div>
         <div class="col-12 row p-0 m-0 justify-content-center">
             <div class="col-12 d-flex justify-content-around mt-3">
-                <button mat-raised-button *ngIf="addedData.data.length > 0" (click)="makeOrder()" style="background-color: #3373e7; color : white">Make Order
+                <button mat-raised-button *ngIf="addedData.data.length > 0" [hidden]="!enableAddCart"
+                    (click)="makeOrder()" style="background-color: #3373e7; color : white">Make Order
                     <mat-icon>add_shopping_cart</mat-icon>
                 </button>
             </div>

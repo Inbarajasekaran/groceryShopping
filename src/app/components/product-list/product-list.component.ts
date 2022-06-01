@@ -14,20 +14,33 @@ import { LoginComponent } from '../login/login.component';
 })
 export class ProductListComponent implements OnInit, AfterViewInit {
 
-  constructor(private db: DbService, private router: Router, private dlg : MatDialog) { }
+  constructor(private db: DbService, private router: Router, private dlg: MatDialog) { }
+  selectedType: any;
+  type: any = [];
+  selectedPrice: any;
+  price: any = [];
   products: any = [];
+  filteredObj: any = {};
   dataSource = new MatTableDataSource([]);
   displayedColumns: string[] = ['selectAll', 'SNo', 'name', 'stocksAvail', 'weight', 'amount'];
   selection = new SelectionModel<any>(true, []);
   emptyCheck: boolean = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   addedData = new MatTableDataSource([]);
-  cartDisplayColumns: string[] = ['SNo', 'name', 'quantity', 'amount', 'remove']
+  cartDisplayColumns: string[] = ['SNo', 'name', 'quantity', 'amount', 'remove'];
+  noOfStocks: any = [];
+  enableAddCart = false;
 
   ngOnInit(): void {
     this.db.products.forEach((ele, i) => {
       this.products.push(ele)
-    })
+      this.type.push(ele['type']);
+      let typeArr = [... new Set(this.type)]
+      this.type = typeArr;
+      // this.price.push(ele['amount']);
+      // let priceArr = [... new Set(this.type)];
+      // this.price = priceArr;
+    });
   }
 
   ngAfterViewInit(): void {
@@ -36,21 +49,21 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     this.addedData = new MatTableDataSource([]);
   }
 
-  /** Whether the number of selected elements matches the total number of rows. */
+  /* WHETHER THE NUMBER OF SELECTED ELEMENTS MATCHESTHE TOTAL NUMBER OF ROWS */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  /* SELECTS ALL THE ROWS IF THEY ARE NOT SELECTED; OTHERWISE CLEAR selection. */
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :
       this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
-  /** The label for the checkbox on the passed row */
+  /* THE LABEL FOR THE CHECKBOX ON THE PASSED ROW */
   // checkboxLabel(row?: any): string {
   //   if (!row) {
   //     return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
@@ -59,6 +72,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   // }
 
   eventCheck() {
+    this.enableAddCart = false;
     if (this.selection.selected.length > 0) {
       this.emptyCheck = false;
       this.addedData = new MatTableDataSource(this.selection.selected)
@@ -67,6 +81,81 @@ export class ProductListComponent implements OnInit, AfterViewInit {
       this.emptyCheck = true;
       this.addedData = new MatTableDataSource(this.selection.selected)
     }
+  }
+
+  requiredAmt(ele) { // HERE THE ele WILL GET THE quantity FROM ngModel
+    ele['stocksAvail'] = ele['noOfProduct'] - ele['quantity'];
+
+    if(ele['quantity'] > ele['stocksAvail']) { // TO HANDLE NUMBER TO NEGETIVE VALUE
+      ele['stocksAvail'] = 0
+    }
+    // CODE FOR ENABLE Make Order BUTTON
+    let tmpVal = 0;
+    this.enableAddCart = false;
+    this.addedData.data.forEach(ele => {
+      if (ele['quantity'] != undefined && ele['quantity'] != "") {
+        ++tmpVal;
+      } else {
+        tmpVal = 0;
+      }
+    })
+    if (tmpVal <= 0) {
+      this.enableAddCart = false;
+    } else {
+      this.enableAddCart = true;
+    }
+  }
+
+  // requiredAmt(ele, val) { // ALTENATIVELEY USING noOfStocks AS ngModel
+  //   ele['stocksAvail'] = ele['noOfProduct'] - val;
+  // }
+
+  filter(type, val) {
+    // this.price = [];
+    // this.type = [];
+    this.dataSource = new MatTableDataSource(this.products);
+    if (this.filteredObj[type]) {
+      this.filteredObj[type] = val;
+    } else {
+      // this.filteredObj = { type: val }
+      this.filteredObj[type] = val;
+    }
+    let dataSourceBackup = this.dataSource.data;
+    let temp = [];
+    dataSourceBackup.forEach(ele => {
+      if (this.check(this.filteredObj, ele)) {
+        temp.push(ele);
+      }
+    })
+    this.dataSource = new MatTableDataSource(temp);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.data.forEach(ele => {
+      // this.price.push(ele['amount'])
+      this.type.push(ele['type'])
+    })
+  }
+
+  check(filteredVal, element) {
+    let sts = false;
+    for (const key in filteredVal) {
+      if (typeof filteredVal[key] != "string") {
+        if (filteredVal[key].indexOf(element[key]) > -1) {
+          sts = true;
+          break;
+        } else {
+          sts = false;
+          // break;
+        }
+      } else {
+        if (filteredVal[key] == element[key]) {
+          sts = true;
+        } else {
+          sts = false;
+          // break;
+        }
+      }
+    }
+    return sts;
   }
 
   removeFromCart(item) {
@@ -81,16 +170,18 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   }
 
   makeOrder() {
-    if (localStorage.getItem('user')){
-      this.db.selectedProducts = this.addedData.data;
-      this.router.navigateByUrl('my-orders');
-    } else {
-      this.dlg.open(LoginComponent).afterClosed().subscribe(res => {
-        if (res == true){
-          this.db.selectedProducts = this.addedData.data;
-          this.router.navigateByUrl('my-orders');
-        }
-      })
+    if (this.enableAddCart == true) {
+      if (localStorage.getItem('user')) {
+        this.db.selectedProducts = this.addedData.data;
+        this.router.navigateByUrl('my-orders');
+      } else {
+        this.dlg.open(LoginComponent).afterClosed().subscribe(res => {
+          if (res == true) {
+            this.db.selectedProducts = this.addedData.data;
+            this.router.navigateByUrl('my-orders');
+          }
+        })
+      }
     }
   }
 
