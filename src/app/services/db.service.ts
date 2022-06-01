@@ -33,7 +33,6 @@ export class DbService {
   userLogin: login[] = [
     { userName: 'ADMIN', password: '12345' },
     { userName: 'Inba', password: '0011' },
-    { userName: 'Swaitha', password: '171199' },
   ]
 
   register: registeration[] = [
