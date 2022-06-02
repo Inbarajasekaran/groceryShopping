@@ -82,8 +82,7 @@
                 </tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
-            <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons
-                aria-label="Select page of periodic elements" class="mat-paginator-sticky">
+            <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons class="mat-paginator-sticky">
             </mat-paginator>
         </div>
     </div>
@@ -118,7 +117,7 @@
                             <!-- <input matInput [(ngModel)]="noOfStocks[i]" (input)="requiredAmt(item, noOfStocks[i])"> -->
                             <!-- / ngModel noOfStocks[i] STORE THE VALUE / -->
                         </mat-form-field>
-                        <div *ngIf="qty.touched && qty.invalid" style="color: red;">test</div>
+                        <div *ngIf="qty.touched && qty.invalid" style="color: red;">Quantity is required</div>
                     </td>
                 </ng-container>
 

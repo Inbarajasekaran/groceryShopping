@@ -86,7 +86,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   requiredAmt(ele) { // HERE THE ele WILL GET THE quantity FROM ngModel
     ele['stocksAvail'] = ele['noOfProduct'] - ele['quantity'];
 
-    if(ele['quantity'] > ele['stocksAvail']) { // TO HANDLE NUMBER TO NEGETIVE VALUE
+    if (ele['quantity'] > ele['stocksAvail']) { // TO HANDLE NUMBER TO NEGETIVE VALUE
       ele['stocksAvail'] = 0
     }
     // CODE FOR ENABLE Make Order BUTTON
@@ -102,7 +102,15 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     if (tmpVal <= 0) {
       this.enableAddCart = false;
     } else {
-      this.enableAddCart = true;
+      for (let i = 0; i < this.addedData.data.length; i++) {
+        if (this.addedData.data[i]['noOfProduct'] >= this.addedData.data[i]['quantity']) {
+          this.enableAddCart = true;
+        } else {
+          this.enableAddCart = false;
+          break;
+        }
+      }
+
     }
   }
 

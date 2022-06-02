@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatTab } from '@angular/material/tabs';
 import { DbService } from 'src/app/services/db.service';
 
 @Component({
@@ -7,12 +10,16 @@ import { DbService } from 'src/app/services/db.service';
   styleUrls: ['./mycart.component.css']
 })
 export class MycartComponent implements OnInit {
-  prodList: any[];
-  constructor(private db: DbService) { }
+  prodList = new MatTableDataSource([]);
+  constructor(private db: DbService) { };
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  displayColumns: string[] = ['SNo', 'name', 'quantity', 'amount'];
 
   ngOnInit(): void {
-    this.prodList = this.db.selectedProducts;
-    console.log(this.prodList)
+    this.prodList.data = this.db.selectedProducts;
+    setTimeout(() => {
+      this.prodList.paginator = this.paginator;
+    })
   }
 
 }
