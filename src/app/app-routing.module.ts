@@ -6,6 +6,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { SellDirectlyProductsComponent } from './components/sell-directly-products/sell-directly-products.component';
 import { RegisterComponent } from './components/register/register.component';
 import { MycartComponent } from './components/mycart/mycart.component';
+import { ManageProductsComponent } from './components/manage-products/manage-products.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'products', component: ProductListComponent },
   { path: 'partnership', component: SellDirectlyProductsComponent },
-  { path: 'my-orders', component: MycartComponent }
+  { path: 'my-orders', component: MycartComponent },
+  { path: 'manage-products', component: ManageProductsComponent }
 ];
 
 @NgModule({

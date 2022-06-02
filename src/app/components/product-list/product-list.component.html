@@ -78,6 +78,16 @@
                     <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
                 </ng-container>
 
+                <!-- REMOVE Column -->
+                <ng-container matColumnDef="remove" *ngIf="router.url == '/manage-products' ">
+                    <th mat-header-cell *matHeaderCellDef style="text-align: center; font-size: 15px;"> Remove </th>
+                    <td mat-cell *matCellDef="let item">
+                        <button mat-icon-button (click)="removeFromCart(item)" color="warn">
+                            <mat-icon>remove</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
                 <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" style="background-color: #e7e7e7">
                 </tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

@@ -1,7 +1,7 @@
 <div class="col-12 p-0 m-0 row justify-content-center" *ngIf="prodList.data.length > 0; else noData">
     <div class="col-8 mt-3">
         <h2>My Orders</h2>
-        <div class="col-12 mt-2" style="max-height: 500px;
+        <div class="col-12 mt-2 mat-elevation-z1" style="max-height: 500px;
     overflow-y: scroll;">
             <table mat-table [dataSource]="prodList" class="col-12" style="text-align: center;">
                 <!-- SNo Column -->

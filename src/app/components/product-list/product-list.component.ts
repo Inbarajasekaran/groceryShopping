@@ -14,7 +14,7 @@ import { LoginComponent } from '../login/login.component';
 })
 export class ProductListComponent implements OnInit, AfterViewInit {
 
-  constructor(private db: DbService, private router: Router, private dlg: MatDialog) { }
+  constructor(private db: DbService, public router: Router, private dlg: MatDialog) { }
   selectedType: any;
   type: any = [];
   selectedPrice: any;
@@ -32,6 +32,9 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   enableAddCart = false;
 
   ngOnInit(): void {
+    if (this.router.url == '/manage-products') {
+      this.displayedColumns.push('remove');
+    }
     this.db.products.forEach((ele, i) => {
       this.products.push(ele)
       this.type.push(ele['type']);
@@ -141,6 +144,9 @@ export class ProductListComponent implements OnInit, AfterViewInit {
       // this.price.push(ele['amount'])
       this.type.push(ele['type'])
     })
+    if(val.length <= 0) {
+      this.dataSource = new MatTableDataSource(this.products);
+    }
   }
 
   check(filteredVal, element) {

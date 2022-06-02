@@ -11,6 +11,8 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { RegisterComponent } from './components/register/register.component';
 import { SellDirectlyProductsComponent } from './components/sell-directly-products/sell-directly-products.component';
 import { MaterialModule } from './materials/material.module';
+import { ManageProductsComponent } from './components/manage-products/manage-products.component';
+import { AddProductComponent } from './components/dialogues/add-product/add-product.component';
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import { MaterialModule } from './materials/material.module';
     ProductListComponent,
     SellDirectlyProductsComponent,
     MycartComponent,
+    ManageProductsComponent,
+    AddProductComponent,
   ],
   imports: [
     CommonModule,
