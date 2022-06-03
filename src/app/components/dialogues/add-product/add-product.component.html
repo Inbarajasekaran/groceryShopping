@@ -1,1 +1,45 @@
-<p>add-product works!</p>
+<div class="d-flex justify-content-center align-items-center"
+    style="margin: -24px -24px 0 -24px; padding-left: 7px; background: #3373e7;height: 50px;">
+    <mat-label style="color:white" class="mx-3"> Add Product </mat-label>
+    <span style="flex : 1 1 auto"></span>
+    <button mat-dialog-close mat-icon-button>
+        <mat-icon style="color:white">clear</mat-icon>
+    </button>
+</div>
+<div class="d-flex justify-content-center pt-4">
+    <div class="col-md-10">
+        <form [formGroup]="productGroup">
+            <mat-form-field appearance="outline" class="col-6 p-2">
+                <mat-label>ID</mat-label>
+                <input matInput formControlName="id">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-6 p-2">
+                <mat-label>Product Name</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-6 p-2">
+                <mat-label>Product Type</mat-label>
+                <mat-select formControlName="type">
+                    <mat-option *ngFor="let types of prodType" [value]="types">{{types}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-6 p-2">
+                <mat-label>Product Available (in Numbers)</mat-label>
+                <input matInput formControlName="noOfProduct" type="number" min="1">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-6 p-2">
+                <mat-label>Product Amount</mat-label>
+                <input matInput formControlName="amount" type="number" min="1">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-6 p-2">
+                <mat-label>Product Weight (in Kgs)</mat-label>
+                <input matInput formControlName="weight" type="number" min="1">
+            </mat-form-field>
+        </form>
+        <div class="col-12 p-0 m-0 row justify-content-center">
+            <button mat-raised-button class="col-3" (click)="addProducts()" style="background-color: #3373e7; 
+            color: white;" [disabled]="productGroup.invalid">Add
+                Products</button>
+        </div>
+    </div>
+</div>

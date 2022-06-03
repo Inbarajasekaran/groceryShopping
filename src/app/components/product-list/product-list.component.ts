@@ -1,10 +1,11 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { DbService } from 'src/app/services/db.service';
+import { AddProductComponent } from '../dialogues/add-product/add-product.component';
 import { LoginComponent } from '../login/login.component';
 
 @Component({
@@ -14,7 +15,7 @@ import { LoginComponent } from '../login/login.component';
 })
 export class ProductListComponent implements OnInit, AfterViewInit {
 
-  constructor(private db: DbService, public router: Router, private dlg: MatDialog) { }
+  constructor(private db: DbService, public router: Router, private dlg: MatDialog, private dlgRef: MatDialogRef<AddProductComponent>) { }
   selectedType: any;
   type: any = [];
   selectedPrice: any;
@@ -44,6 +45,8 @@ export class ProductListComponent implements OnInit, AfterViewInit {
       // let priceArr = [... new Set(this.type)];
       // this.price = priceArr;
     });
+    // this.dlgRef.afterClosed().subscribe(res => { console.log(res) })
+
   }
 
   ngAfterViewInit(): void {
@@ -144,7 +147,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
       // this.price.push(ele['amount'])
       this.type.push(ele['type'])
     })
-    if(val.length <= 0) {
+    if (val.length <= 0) {
       this.dataSource = new MatTableDataSource(this.products);
     }
   }

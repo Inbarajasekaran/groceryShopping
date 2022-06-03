@@ -53,7 +53,7 @@ export class DbService {
 
   products: any[] = [
     {
-      id: "Prod0",
+      id: 0,
       name: "apple",
       type: "fruits",
       noOfProduct: 2000,
@@ -63,7 +63,7 @@ export class DbService {
       stocksSold: 0,
     },
     {
-      id: "Prod1",
+      id: 1,
       name: "bannana",
       type: "fruits",
       noOfProduct: 1000,
@@ -73,7 +73,7 @@ export class DbService {
       stocksSold: 0,
     },
     {
-      id: "Prod2",
+      id: 2,
       name: "orange",
       type: "fruits",
       noOfProduct: 2000,
@@ -83,7 +83,7 @@ export class DbService {
       stocksSold: 0,
     }
     , {
-      id: "Prod3",
+      id: 3,
       name: "Carrot",
       type: "vegetables",
       noOfProduct: 2000,
@@ -93,7 +93,7 @@ export class DbService {
       stocksSold: 0,
     },
     {
-      id: "Prod4",
+      id: 4,
       name: "Beetroot",
       type: "vegetables",
       noOfProduct: 2000,
@@ -103,7 +103,7 @@ export class DbService {
       stocksSold: 0,
     },
     {
-      id: "Prod5",
+      id: 5,
       name: "Cake",
       type: "bakery products",
       noOfProduct: 2000,
@@ -112,7 +112,7 @@ export class DbService {
       stocksAvail: 2000,
       stocksSold: 0,
     }, {
-      id: "Prod6",
+      id: 6,
       name: "Bread",
       type: "bakery products",
       noOfProduct: 2000,
@@ -122,7 +122,7 @@ export class DbService {
       stocksSold: 0,
     },
     {
-      id: "Prod7",
+      id: 7,
       name: "Beaf",
       type: "meat",
       noOfProduct: 2000,
@@ -132,7 +132,7 @@ export class DbService {
       stocksSold: 0,
     },
     {
-      id: "Prod8",
+      id: 8,
       name: "Chicken",
       type: "meat",
       noOfProduct: 2000,
@@ -141,7 +141,7 @@ export class DbService {
       stocksAvail: 2000,
       stocksSold: 0,
     }, {
-      id: "Prod9",
+      id: 9,
       name: "Rice (Brown)",
       type: "cerals",
       noOfProduct: 2000,
@@ -150,7 +150,7 @@ export class DbService {
       stocksAvail: 2000,
       stocksSold: 0,
     }, {
-      id: "Prod10",
+      id: 10,
       name: "Rice (White)",
       type: "cerals",
       noOfProduct: 2000,
@@ -159,7 +159,7 @@ export class DbService {
       stocksAvail: 2000,
       stocksSold: 0,
     }, {
-      id: "Prod11",
+      id: 11,
       name: "Palm Oil",
       type: "oil",
       noOfProduct: 2000,
@@ -168,7 +168,7 @@ export class DbService {
       stocksAvail: 2000,
       stocksSold: 0,
     }, {
-      id: "Prod12",
+      id: 12,
       name: "Sunflower Oil",
       type: "oil",
       noOfProduct: 2000,
@@ -179,7 +179,7 @@ export class DbService {
     },
 
     {
-      id: "Prod13",
+      id: 13,
       name: "Grain",
       type: "cereals",
       noOfProduct: 2000,
@@ -189,7 +189,7 @@ export class DbService {
       stocksSold: 0,
     },
     {
-      id: "Prod14",
+      id: 14,
       name: "Black Pepper",
       type: "cereals",
       noOfProduct: 2000,

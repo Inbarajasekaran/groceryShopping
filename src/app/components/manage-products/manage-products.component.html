@@ -1,6 +1,7 @@
 <div class="col-12 p-0 m-0" *ngIf="router.url == '/manage-products'">
-    <div class="col-12 p-0 m-0">
-        <button mat-fab class="mx-4 mt-3" style="background-color: #3373e7; color: white;">
+    <div class="col-12 p-0 m-0 justify-content-end d-flex">
+        <button mat-fab class="mx-4 mt-3" style="background-color: #3373e7; color: white;" 
+        (click)="addProd()">
             <mat-icon>add</mat-icon>
         </button>
     </div>
