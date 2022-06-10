@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,7 +33,8 @@ import { AddProductComponent } from './components/dialogues/add-product/add-prod
     AppRoutingModule,
     MatSidenavModule
   ],
-  providers: [{ provide: MatDialogRef, useValue: {} }],
+  providers: [{ provide: MatDialogRef, useValue: {} },
+  { provide: MAT_DIALOG_DATA, useValue: {} }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

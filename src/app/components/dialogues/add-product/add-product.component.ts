@@ -38,8 +38,8 @@ export class AddProductComponent implements OnInit {
 
   addProducts() {
     this.db.products.push(this.productGroup.getRawValue());
-    this.dlgRef.close("test")
-    this.dlgRef.afterClosed().subscribe(res => console.log(res))
+    this.dlgRef.close(this.productGroup.getRawValue())
+    // this.dlgRef.afterClosed().subscribe(res => console.log(res))
   }
 
 }

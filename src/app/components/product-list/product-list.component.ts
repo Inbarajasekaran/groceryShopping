@@ -1,6 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { AfterViewInit, Component, Inject, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -45,8 +45,6 @@ export class ProductListComponent implements OnInit, AfterViewInit {
       // let priceArr = [... new Set(this.type)];
       // this.price = priceArr;
     });
-    // this.dlgRef.afterClosed().subscribe(res => { console.log(res) })
-
   }
 
   ngAfterViewInit(): void {
